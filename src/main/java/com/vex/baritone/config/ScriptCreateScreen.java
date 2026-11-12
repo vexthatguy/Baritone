@@ -70,7 +70,7 @@ public class ScriptCreateScreen extends class_437 {
         remX = addX + 60;
         clearX = remX + 60;
         saveX = panelX + PANEL_W - 16 - 96;
-        field = new class_342(this.method_64506(), fieldX, fieldY, fieldW, fieldH,
+        field = new class_342(RenderKit.font(), fieldX, fieldY, fieldW, fieldH,
                 class_2561.method_43470("type a command, then Add"));
         field.method_1863(value -> this.input = value);
         this.method_37063(field);

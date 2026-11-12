@@ -50,6 +50,7 @@ sourceSets {
     }
     ui {
         java.srcDir 'src/main/java'
+        java.srcDir "src/version/$mcVersion/java"
         java.include 'com/vex/baritone/**'
         compileClasspath += files(mcIntermediaryJar)
         compileClasspath += files(renamedJar)

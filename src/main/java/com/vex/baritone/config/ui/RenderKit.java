@@ -1,12 +1,10 @@
 package com.vex.baritone.config.ui;
 
-import net.minecraft.class_10799;
 import net.minecraft.class_2561;
 import net.minecraft.class_2960;
 import net.minecraft.class_310;
 import net.minecraft.class_327;
 import net.minecraft.class_332;
-import org.joml.Matrix3x2fStack;
 
 /**
  * Small, dependency-free drawing helper. Everything is built on the verified
@@ -120,13 +118,13 @@ public final class RenderKit {
     // -------------------------------------------------------------- texture
 
     public static void drawTexture(class_332 ctx, class_2960 texture, int x, int y, int w, int h) {
-        ctx.method_25290(class_10799.field_56883, texture, x, y, 0.0F, 0.0F, w, h, w, h);
+        DrawSupport.drawTexture(ctx, texture, x, y, w, h, w, h);
     }
 
     /** Draws a full texture at an arbitrary size using its real pixel dimensions. */
     public static void drawTexture(class_332 ctx, class_2960 texture, int x, int y, int w, int h,
                                    int texW, int texH) {
-        ctx.method_25290(class_10799.field_56883, texture, x, y, 0.0F, 0.0F, w, h, texW, texH);
+        DrawSupport.drawTexture(ctx, texture, x, y, w, h, texW, texH);
     }
 
     /**
@@ -139,13 +137,12 @@ public final class RenderKit {
      */
     public static void drawScaledTexture(class_332 ctx, class_2960 texture, int x, int y, int w, int h,
                                          int texW, int texH) {
-        ctx.method_25302(class_10799.field_56883, texture, x, y, 0.0F, 0.0F,
-            w, h, texW, texH, texW, texH);
+        DrawSupport.drawScaledTexture(ctx, texture, x, y, w, h, texW, texH);
     }
 
     // ----------------------------------------------------------------- text
 
-    private static class_327 font() {
+    public static class_327 font() {
         return class_310.method_1551().field_1772;
     }
 
@@ -163,13 +160,12 @@ public final class RenderKit {
 
     public static void drawScaledText(class_332 ctx, class_2561 text, int x, int y,
                                       float scale, boolean shadow, int color) {
-        Matrix3x2fStack matrices = ctx.method_51448().pushMatrix();
-        matrices.scale(scale);
+        DrawSupport.beginTransform(ctx, scale);
         float rescale = 1.0F / scale;
         int xx = (int) (x * rescale);
         int yy = (int) (y * rescale);
         ctx.method_51439(font(), text, xx, yy, color, shadow);
-        ctx.method_51448().popMatrix();
+        DrawSupport.endTransform(ctx);
     }
 
     public static void drawCenteredText(class_332 ctx, String text, int centerX, int y,
@@ -183,13 +179,12 @@ public final class RenderKit {
 
     public static void drawCenteredText(class_332 ctx, String text, int centerX, int y,
                                         float scale, boolean shadow, int color) {
-        Matrix3x2fStack matrices = ctx.method_51448().pushMatrix();
-        matrices.scale(scale);
+        DrawSupport.beginTransform(ctx, scale);
         float rescale = 1.0F / scale;
         int x = (int) (centerX * rescale) - font().method_27525(class_2561.method_43470(text)) / 2;
         int yy = (int) (y * rescale);
         ctx.method_51439(font(), class_2561.method_43470(text), x, yy, color, shadow);
-        ctx.method_51448().popMatrix();
+        DrawSupport.endTransform(ctx);
     }
 
     public static void drawRightText(class_332 ctx, String text, int rightX, int y,
@@ -199,13 +194,12 @@ public final class RenderKit {
 
     public static void drawRightText(class_332 ctx, String text, int rightX, int y,
                                      float scale, boolean shadow, int color) {
-        Matrix3x2fStack matrices = ctx.method_51448().pushMatrix();
-        matrices.scale(scale);
+        DrawSupport.beginTransform(ctx, scale);
         float rescale = 1.0F / scale;
         int x = (int) (rightX * rescale) - font().method_27525(class_2561.method_43470(text));
         int yy = (int) (y * rescale);
         ctx.method_51439(font(), class_2561.method_43470(text), x, yy, color, shadow);
-        ctx.method_51448().popMatrix();
+        DrawSupport.endTransform(ctx);
     }
 
     public static int textWidth(String text, float scale) {
