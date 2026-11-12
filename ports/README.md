@@ -8,11 +8,15 @@ This folder is the home of the multi-version port.
 | --- | --- |
 | 1.21.11 (Fabric) | ✅ builds, 42/42 anchors verified |
 | 1.21.6 (Fabric) | ✅ builds, 42/42 anchors verified |
+| 1.21.5 (Fabric) | ✅ builds, 42/42 anchors verified |
 | 1.21.4 (Fabric) | ✅ builds, 42/42 anchors verified |
+| 1.21.3 (Fabric) | ✅ builds, 42/42 anchors verified |
+| 1.21.2 (Fabric) | ✅ builds, 42/42 anchors verified |
 | 1.21.1 (Fabric) | ✅ builds, 42/42 anchors verified |
 | 1.21 (Fabric) | ✅ builds, 42/42 anchors verified (in-game test pending) |
+| 1.21.4 Forge / NeoForge | ✅ assembled (renamed stock + official-named remapped UI) — runtime test pending |
 | 26.1/26.2/26.3 (Fabric) | 🚧 blocked: Fabric has not published intermediary mappings for 26.x |
-| Forge / NeoForge | 🚧 planned (toolchain work) |
+| Forge / NeoForge (other versions) | 🚧 same assemble pipeline, run `assemble-forge.ps1 -Version X -Loader forge\|neoforge` |
 
 ## How a port works
 

@@ -25,9 +25,10 @@ Invoke-WebRequest $serverUrl -OutFile "$OutDir\server.jar"
 
 # ---- Yarn mappings (optional; used only for named output) -------------------
 try {
-    Write-Host "Resolving yarn build for 1.21..."
-    $yarnMeta = Invoke-RestMethod "https://maven.fabricmc.net/net/fabricmc/yarn/maven-metadata.xml"
-    $yarnVersions = @($yarnMeta.versioning.versions.version) | Where-Object { $_ -like "$Version+build.*" }
+    Write-Host "Resolving yarn build for $Version..."
+    $yarnXml = (Invoke-WebRequest "https://maven.fabricmc.net/net/fabricmc/yarn/maven-metadata.xml" -UseBasicParsing -TimeoutSec 30).Content
+    $yarnVersions = [regex]::Matches($yarnXml, '<version>([^<]+)</version>') | ForEach-Object { $_.Groups[1].Value } |
+        Where-Object { $_ -like "$Version+build.*" }
     if ($yarnVersions.Count -gt 0) {
         $yarnVer = $yarnVersions | Sort-Object { [int]($_ -replace ".*\+build\.", "") } -Descending | Select-Object -First 1
         $yarnUrl = "https://maven.fabricmc.net/net/fabricmc/yarn/$yarnVer/yarn-$yarnVer-v2.jar"
@@ -37,9 +38,9 @@ try {
         Remove-Item $tmpY -Recurse -Force -ErrorAction SilentlyContinue
         New-Item -ItemType Directory -Force $tmpY | Out-Null
         Push-Location $tmpY
-        & "$env:JAVA_HOME\bin\jar.exe" xf "$OutDir\yarn.jar" mappings.tiny
+        & "$env:JAVA_HOME\bin\jar.exe" xf "$OutDir\yarn.jar" mappings/mappings.tiny
         Pop-Location
-        Move-Item -Force "$tmpY\mappings.tiny" "$OutDir\yarn.tiny"
+        Move-Item -Force "$tmpY\mappings\mappings.tiny" "$OutDir\yarn.tiny"
         Remove-Item $tmpY -Recurse -Force
     } else {
         Write-Host "No yarn build found for $Version (skipping, not needed for intermediary)"

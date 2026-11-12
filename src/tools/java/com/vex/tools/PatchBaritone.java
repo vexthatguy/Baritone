@@ -133,6 +133,13 @@ public final class PatchBaritone {
         System.out.println("wrote " + output);
     }
 
+    private static ClassWriter cw() {
+        if (System.getProperty("BT_NO_FRAMES") != null) {
+            return new ClassWriter(ClassWriter.COMPUTE_MAXS);
+        }
+        return cw();
+    }
+
     private static byte[] patchCommandGate(byte[] classBytes) {
         ClassNode cn = new ClassNode();
         new ClassReader(classBytes).accept(cn, 0);
@@ -167,7 +174,7 @@ public final class PatchBaritone {
         if (!any) {
             return null;
         }
-        ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+        ClassWriter cw = cw();
         cn.accept(cw);
         return cw.toByteArray();
     }
@@ -205,7 +212,7 @@ public final class PatchBaritone {
 
         cn.methods.add(gate);
 
-        ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+        ClassWriter cw = cw();
         cn.accept(cw);
         return cw.toByteArray();
     }
@@ -239,7 +246,7 @@ public final class PatchBaritone {
         if (!any) {
             return null;
         }
-        ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+        ClassWriter cw = cw();
         cn.accept(cw);
         return cw.toByteArray();
     }
@@ -279,7 +286,7 @@ public final class PatchBaritone {
             "(Ljava/util/List;)V", false));
         target.instructions.insertBefore(unmod, inject);
 
-        ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+        ClassWriter cw = cw();
         cn.accept(cw);
         return cw.toByteArray();
     }
@@ -303,7 +310,7 @@ public final class PatchBaritone {
         if (!any) {
             return null;
         }
-        ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+        ClassWriter cw = cw();
         cn.accept(cw);
         return cw.toByteArray();
     }
@@ -352,7 +359,7 @@ public final class PatchBaritone {
             return null;
         }
         System.out.println("Settings patch: replantNetherWart default flipped to TRUE");
-        ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+        ClassWriter cw = cw();
         cn.accept(cw);
         return cw.toByteArray();
     }
@@ -382,7 +389,7 @@ public final class PatchBaritone {
         target.instructions.clear();
         target.instructions.add(body);
 
-        ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+        ClassWriter cw = cw();
         cn.accept(cw);
         return cw.toByteArray();
     }
@@ -421,7 +428,7 @@ public final class PatchBaritone {
             "com/vex/baritone/config/HelpSorter", "sort", "(Ljava/util/List;)V", false));
         target.instructions.insert(collect, sort);
 
-        ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+        ClassWriter cw = cw();
         cn.accept(cw);
         return cw.toByteArray();
     }
@@ -451,14 +458,14 @@ public final class PatchBaritone {
             "(Lcom/vex/baritone/api/utils/IPlayerContext;)V", false));
         target.instructions.insert(gate);
 
-        ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+        ClassWriter cw = cw();
         cn.accept(cw);
         return cw.toByteArray();
     }
 
     private static byte[] patchThisWay(byte[] classBytes) {
         ClassReader cr = new ClassReader(classBytes);
-        ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+        ClassWriter cw = cw();
         ClassVisitor cv = new ClassVisitor(Opcodes.ASM9, cw) {
             @Override
             public MethodVisitor visitMethod(int access, String mname, String descriptor, String signature, String[] exceptions) {
@@ -607,7 +614,7 @@ public final class PatchBaritone {
         System.out.println("FarmProcess: crops=" + true + " wart=" + wartSwapped
             + " radius12=" + radiusChanged + " rangeClamp=" + rangeClamped);
 
-        ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+        ClassWriter cw = cw();
         cn.accept(cw);
         return cw.toByteArray();
     }
@@ -622,3 +629,5 @@ public final class PatchBaritone {
         return bos.toByteArray();
     }
 }
+
+
