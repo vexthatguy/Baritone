@@ -9,9 +9,20 @@
 
 | Target | Status |
 | --- | --- |
-| MC 1.21.x (Fabric) | ✅ current (1.21.11) |
-| MC 1.26.x (Fabric) | 🚧 planned |
+| MC 1.21.11 (Fabric) | ✅ builds, 42/42 anchors verified |
+| MC 1.21 (Fabric) | ✅ builds, 42/42 anchors verified (in-game test pending) |
+| MC 26.3 / 26.4 snapshots (Fabric) | 🚧 blocked on a stock Baritone jar for 26.x |
 | Forge / NeoForge | 🚧 planned |
+
+## Why 26.x is blocked (for now)
+
+The current Minecraft versioning (2026) is `26.3` (release) and
+`26.4-snapshot-N`. The port pipeline can fetch all Mojang/Fabric assets for
+those versions already (`fetch-deps.ps1 -Version 26.3`), but the pipeline
+needs a **stock Baritone jar built for that version** to rename, patch and
+extend. There is no public stock Baritone for 26.x yet; the moment one
+exists (or is built from source by the Baritone community), point
+`MC_STOCK_BARITONE_JAR` at it and run the same commands.
 
 ## How the port will be done
 

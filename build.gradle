@@ -11,13 +11,25 @@ configurations {
 }
 
 // ---------------------------------------------------------------------------
-// Version/loader target. Override via -P or gradle.properties.
+// Version/loader target. Override via -P, environment variables, or
+// gradle.properties. Precedence: env > gradle.properties > default.
 // ---------------------------------------------------------------------------
-def mcVersion = providers.gradleProperty('mc_version').orElse('1.21.11').get()
-def stockBaritoneJar = providers.gradleProperty('stock_baritone_jar')
-        .orElse('libs/original-baritone-meteor-1.21.11.jar').get()
-def mcIntermediaryJarPath = providers.gradleProperty('mc_intermediary_jar').get()
-def modmenuJar = providers.gradleProperty('modmenu_jar').orElse('libs/modmenu-17.0.1.jar').get()
+def envOrProp = { String env, String prop, def dflt ->
+    String e = System.getenv(env)
+    if (e != null && !e.isBlank()) return e
+    def p = providers.gradleProperty(prop)
+    return p.isPresent() ? p.get() : dflt
+}
+
+def mcVersion = envOrProp('MC_VERSION', 'mc_version', '1.21.11')
+def stockBaritoneJar = envOrProp('MC_STOCK_BARITONE_JAR', 'stock_baritone_jar',
+        'libs/original-baritone-meteor-1.21.11.jar')
+def mcIntermediaryJarPath = envOrProp('MC_INTERMEDIARY_JAR', 'mc_intermediary_jar', null)
+def modmenuJar = envOrProp('MC_MODMENU_JAR', 'modmenu_jar', 'libs/modmenu-17.0.1.jar')
+
+if (mcIntermediaryJarPath == null) {
+    throw new GradleException("mc_intermediary_jar is not set; provide -Pmc_intermediary_jar=... or set MC_INTERMEDIARY_JAR")
+}
 
 def mcIntermediaryJar = file(mcIntermediaryJarPath)
 def renamedJarName = "renamed-baritone-${mcVersion}-SNAPSHOT.jar"
@@ -141,8 +153,9 @@ tasks.register('verifyAnchors', JavaExec) {
     doFirst {
         def dir = layout.buildDirectory.dir('libs').get().asFile
         def finals = dir.listFiles().findAll { it.name ==~ /baritone-${mcVersion}-SNAPSHOT\.\d+\.jar/ }
-        finals.sort { a, b -> b.name <=> a.name }
-        def jar = finals.isEmpty() ? null : finals[0]
+        def num = { String n -> (n =~ /\.(\d+)\.jar$/)[0][1] as int }
+        finals.sort { a, b -> num(a.name) <=> num(b.name) }
+        def jar = finals.isEmpty() ? null : finals.last()
         args = [
             (jar != null ? jar.absolutePath : 'MISSING-FINAL-JAR'),
             mcVersion

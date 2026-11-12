@@ -28,7 +28,6 @@ earthversion.bat
 # Generated libs (not inputs)
 libs/baritone-1.21.11-SNAPSHOT.jar
 libs/baritone-patched.jar
-libs/*-unoptimized-*.jar
 libs/jvmdowngrader-*.jar
 libs/mixinextras-*.jar
 libs/yacl-*.jar
