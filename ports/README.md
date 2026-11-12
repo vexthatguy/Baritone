@@ -7,16 +7,11 @@ This folder is the home of the multi-version port.
 | Target | Status |
 | --- | --- |
 | 1.21.11 (Fabric) | ✅ builds, 42/42 anchors verified |
-| 1.21.6 (Fabric) | ✅ builds, 42/42 anchors verified |
-| 1.21.5 (Fabric) | ✅ builds, 42/42 anchors verified |
-| 1.21.4 (Fabric) | ✅ builds, 42/42 anchors verified |
-| 1.21.3 (Fabric) | ✅ builds, 42/42 anchors verified |
-| 1.21.2 (Fabric) | ✅ builds, 42/42 anchors verified |
-| 1.21.1 (Fabric) | ✅ builds, 42/42 anchors verified |
-| 1.21 (Fabric) | ✅ builds, 42/42 anchors verified (in-game test pending) |
-| 1.21.4 Forge / NeoForge | ✅ assembled (renamed stock + official-named remapped UI) — runtime test pending |
-| 26.1/26.2/26.3 (Fabric) | 🚧 blocked: Fabric has not published intermediary mappings for 26.x |
-| Forge / NeoForge (other versions) | 🚧 same assemble pipeline, run `assemble-forge.ps1 -Version X -Loader forge\|neoforge` |
+| 1.21.10/1.21.9/1.21.8/1.21.7 (Fabric) | ✅ builds, 42/42 anchors verified |
+| 1.21.6/1.21.5/1.21.4/1.21.3/1.21.2/1.21.1/1.21 (Fabric) | ✅ builds, 42/42 anchors verified |
+| 1.21.x Forge + NeoForge (1.21 → 1.21.10) | ✅ assembled (renamed stock + official-named remapped UI) |
+| 26.1/26.2/26.3 (all loaders) | 🚧 blocked: Fabric has not published intermediary mappings for 26.x |
+| Forge / NeoForge (1.21.11) | 🚧 no stock 1.21.11 Forge/NeoForge jar upstream |
 
 ## How a port works
 
