@@ -15,6 +15,12 @@ jobs:
         mc:
           - version: 1.21.11
             stock: libs/original-baritone-meteor-1.21.11.jar
+          - version: 1.21.6
+            stock: libs/stock-baritone-fabric-1.21.6.jar
+          - version: 1.21.4
+            stock: libs/stock-baritone-fabric-1.21.4.jar
+          - version: 1.21.1
+            stock: libs/stock-baritone-fabric-1.21.1.jar
           - version: 1.21
             stock: libs/baritone-unoptimized-fabric-1.21.jar
     steps:

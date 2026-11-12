@@ -62,7 +62,13 @@ sourceSets {
     }
     ui {
         java.srcDir 'src/main/java'
-        java.srcDir "src/version/$mcVersion/java"
+        def versionOverlay = file("src/version/$mcVersion/java")
+        def classicOverlay = file("src/version/1.21/java")
+        if (versionOverlay.exists()) {
+            java.srcDir versionOverlay
+        } else if (classicOverlay.exists()) {
+            java.srcDir classicOverlay
+        }
         java.include 'com/vex/baritone/**'
         compileClasspath += files(mcIntermediaryJar)
         compileClasspath += files(renamedJar)

@@ -51,7 +51,11 @@ try {
 # ---- Intermediary v2 mappings (official -> intermediary) --------------------
 $medUrl = "https://maven.fabricmc.net/net/fabricmc/intermediary/$Version/intermediary-$Version-v2.jar"
 Write-Host "Downloading intermediary $Version"
-Invoke-WebRequest $medUrl -OutFile "$OutDir\intermediary.jar"
+try {
+    Invoke-WebRequest $medUrl -OutFile "$OutDir\intermediary.jar"
+} catch {
+    throw "Fabric has not published intermediary mappings for $Version yet (latest on maven.fabricmc.net is usually the newest Fabric-supported release). The port pipeline is blocked until it does."
+}
 
 Write-Host "Extracting mappings/mappings.tiny from intermediary"
 $tmp2 = "$OutDir\_med_extract"
