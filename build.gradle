@@ -7,6 +7,7 @@ version = '1.21.11-SNAPSHOT'
 
 configurations {
     asmTool
+    remapper
 }
 
 // ---------------------------------------------------------------------------
@@ -45,9 +46,11 @@ sourceSets {
         java.srcDir 'src/tools/java'
         compileClasspath += files(mcIntermediaryJar)
         compileClasspath += configurations.asmTool
+        compileClasspath += configurations.remapper
     }
     ui {
         java.srcDir 'src/main/java'
+        java.include 'com/vex/baritone/**'
         compileClasspath += files(mcIntermediaryJar)
         compileClasspath += files(renamedJar)
         compileClasspath += files(modmenuJar)
@@ -57,12 +60,39 @@ sourceSets {
 
 repositories {
     mavenCentral()
+    maven {
+        url 'https://maven.fabricmc.net/'
+    }
 }
 
 dependencies {
     asmTool 'org.ow2.asm:asm:9.10.1'
     asmTool 'org.ow2.asm:asm-commons:9.10.1'
     asmTool 'org.ow2.asm:asm-tree:9.10.1'
+    remapper 'net.fabricmc:tiny-remapper:0.15.0'
+    remapper 'org.ow2.asm:asm:9.10.1'
+    remapper 'org.ow2.asm:asm-tree:9.10.1'
+    remapper 'org.ow2.asm:asm-commons:9.10.1'
+}
+
+tasks.register('makeIntermediary', JavaExec) {
+    group = 'port'
+    description = 'Builds a merged intermediary Minecraft jar from Mojang client+server jars and the intermediary v2 mapping.'
+    dependsOn tasks.named('compileToolsJava')
+    classpath = sourceSets.tools.output + configurations.remapper
+    mainClass = 'com.vex.tools.MakeIntermediary'
+    def portVersion = providers.gradleProperty('port_version').orElse('1.21').get()
+    def portClient = providers.gradleProperty('port_client').orElse("ports/cache/$portVersion/client.jar").get()
+    def portServer = providers.gradleProperty('port_server').orElse("ports/cache/$portVersion/server.jar").get()
+    def portMappings = providers.gradleProperty('port_mappings').orElse("ports/cache/$portVersion/intermediary.tiny").get()
+    def portOut = providers.gradleProperty('port_out').orElse("ports/cache/$portVersion/minecraft-merged-intermediary.jar").get()
+    args = [
+        file(portClient).absolutePath,
+        file(portServer).absolutePath,
+        file(portMappings).absolutePath,
+        file("ports/cache/$portVersion/merged.jar").absolutePath,
+        file(portOut).absolutePath
+    ]
 }
 
 tasks.register('renameJar', JavaExec) {

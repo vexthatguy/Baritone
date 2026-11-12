@@ -2,6 +2,7 @@
 build/
 .gradle/
 *.jar.backup
+ports/cache/
 
 # IDE
 .idea/

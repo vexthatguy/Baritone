@@ -119,8 +119,8 @@ public class BaritoneConfigScreen extends ConfigBase {
             }
             case 2 -> {
                 addToggle("Place blocks", "Place blocks while pathing", s.allowPlace);
-                addToggle("Place in source fluid", "Allow placing into fluid sources", s.allowPlaceInFluidsSource);
-                addToggle("Place in flowing fluid", "Allow placing into flowing fluids", s.allowPlaceInFluidsFlow);
+                addIfPresent("Place in source fluid", "Allow placing into fluid sources", s, "allowPlaceInFluidsSource");
+                addIfPresent("Place in flowing fluid", "Allow placing into flowing fluids", s, "allowPlaceInFluidsFlow");
                 addToggle("Ignore existing", "Ignore existing blocks when building", s.buildIgnoreExisting);
                 addToggle("Ignore direction", "Ignore build direction", s.buildIgnoreDirection);
                 addToggle("Build in layers", "Build layer by layer", s.buildInLayers);
@@ -158,7 +158,7 @@ public class BaritoneConfigScreen extends ConfigBase {
                 addToggle("Disconnect on arrival", "Disconnect when the goal is reached", s.disconnectOnArrival);
                 addToggle("Open containers on arrival", "Right-click containers on arrival", s.rightClickContainerOnArrival);
                 addToggle("Blacklist closest", "Blacklist the nearest block on failure", s.blacklistClosestOnFailure);
-                addToggle("Jump at build limit", "Allow jumping at the build limit", s.allowJumpAtBuildLimit);
+                addIfPresent("Jump at build limit", "Allow jumping at the build limit", s, "allowJumpAtBuildLimit");
                 addToggle("Jump at 256", "Allow jumping at Y 256", s.allowJumpAt256);
                 addToggle("Repropagation", "Repropagate only on real improvement", s.minimumImprovementRepropagation);
             }
@@ -190,6 +190,13 @@ public class BaritoneConfigScreen extends ConfigBase {
 
     private void addToggle(String label, String description, Settings.Setting<Boolean> setting) {
         addRow(new SettingRow(label, description, setting, this::save));
+    }
+
+    private void addIfPresent(String label, String description, Settings settings, String fieldName) {
+        Settings.Setting<Boolean> setting = SettingRefs.boolSetting(settings, fieldName);
+        if (setting != null) {
+            addToggle(label, description, setting);
+        }
     }
 
     private void save() {
