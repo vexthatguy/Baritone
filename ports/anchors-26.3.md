@@ -90,3 +90,10 @@ LinkCheck checked 56 classes; missing references: 70
 - Add src/version/26.3/java overlays that adapt the renamed references.
 - Re-run LinkCheck until zero missing.
 - Re-run ssemble-experimental.ps1 -Version 26.3 -Loader <loader>.
+
+## Automated rename suggestions (GuessMappings)
+
+```nError: Could not find or load main class ports\cache\26.3\missing.txt
+Caused by: java.lang.ClassNotFoundException: ports\cache\26.3\missing.txt
+```
+
