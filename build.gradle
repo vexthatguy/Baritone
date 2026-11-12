@@ -121,6 +121,9 @@ tasks.register('makeIntermediary', JavaExec) {
         file("ports/cache/$portVersion/merged.jar").absolutePath,
         file(portOut).absolutePath
     ]
+    if (System.getenv('MC_SKIP_REMAP') == '1') {
+        args += 'SKIP'
+    }
 }
 
 tasks.register('renameJar', JavaExec) {

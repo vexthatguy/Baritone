@@ -31,8 +31,8 @@ public final class MakeIntermediary {
     }
 
     public static void main(String[] args) throws Exception {
-        if (args.length != 5) {
-            System.err.println("Usage: MakeIntermediary <client.jar> <server.jar> <intermediary.tiny> <merged.jar> <output.jar>");
+        if (args.length < 5) {
+            System.err.println("Usage: MakeIntermediary <client.jar> <server.jar> <intermediary.tiny> <merged.jar> <output.jar> [SKIP]");
             System.exit(2);
             return;
         }
@@ -41,6 +41,7 @@ public final class MakeIntermediary {
         Path mappings = Paths.get(args[2]);
         Path merged = Paths.get(args[3]);
         Path output = Paths.get(args[4]);
+        boolean skipRemap = args.length > 5 && args[5].equals("SKIP");
 
         // -- merge client + server (client wins on duplicates) ----------------
         System.out.println("merging " + client + " + " + server);
@@ -49,6 +50,12 @@ public final class MakeIntermediary {
         addZip(entries, server);
         writeZip(merged, entries);
         System.out.println("merged " + entries.size() + " entries -> " + merged);
+
+        if (skipRemap) {
+            Files.copy(merged, output, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("wrote " + output + " (SKIP remap)");
+            return;
+        }
 
         // -- remap official -> intermediary -----------------------------------
         System.out.println("remapping with " + mappings);
