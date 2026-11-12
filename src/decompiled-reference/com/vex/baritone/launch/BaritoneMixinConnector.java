@@ -1,0 +1,10 @@
+package com.vex.baritone.launch;
+
+import org.spongepowered.asm.mixin.Mixins;
+import org.spongepowered.asm.mixin.connect.IMixinConnector;
+
+public class BaritoneMixinConnector implements IMixinConnector {
+   public void connect() {
+      Mixins.addConfiguration("mixins.com.vex.baritone.json");
+   }
+}

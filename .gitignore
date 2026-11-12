@@ -15,14 +15,14 @@ logs/
 screenshots/
 
 # Stray extracted artifacts
-META-INF/
+/META-INF/
 structure.txt
 earthbuild.bat
 earthversion.bat
 
-# Leftover scratch trees
-baritone/
-altoclef/
+# Leftover scratch trees (root-level only)
+/baritone/
+/altoclef/
 
 # Generated libs (not inputs)
 libs/baritone-1.21.11-SNAPSHOT.jar
