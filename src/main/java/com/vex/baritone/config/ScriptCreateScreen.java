@@ -1,6 +1,7 @@
 package com.vex.baritone.config;
 
 import com.vex.baritone.config.ui.RenderKit;
+import com.vex.baritone.config.ui.RemasteredUiBase;
 import com.vex.baritone.config.ui.Theme;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,13 +9,12 @@ import net.minecraft.class_2561;
 import net.minecraft.class_332;
 import net.minecraft.class_342;
 import net.minecraft.class_437;
-import net.minecraft.class_11909;
 
 /**
  * Minimal flat editor for scripts: type one command at a time, press Add,
  * then Save. Lines are stored as one command per line.
  */
-public class ScriptCreateScreen extends class_437 {
+public class ScriptCreateScreen extends RemasteredUiBase {
 
     private static final int PANEL_W = 460;
     private static final int PANEL_H = 330;
@@ -121,12 +121,12 @@ public class ScriptCreateScreen extends class_437 {
     }
 
     @Override
-    public boolean method_25402(class_11909 click, boolean doubled) {
-        int mx = (int) click.comp_4798();
-        int my = (int) click.comp_4799();
+    protected boolean handleMouse(double mouseX, double mouseY, int button) {
+        int mx = (int) mouseX;
+        int my = (int) mouseY;
 
         if (mx >= fieldX && mx <= fieldX + fieldW && my >= fieldY && my <= fieldY + fieldH) {
-            field.method_25348(click, false);
+            focusTextField(field, mx, my);
             return true;
         }
         if (inButton(mx, my, addX)) {
@@ -153,7 +153,7 @@ public class ScriptCreateScreen extends class_437 {
             closeToParent();
             return true;
         }
-        return super.method_25402(click, doubled);
+        return true;
     }
 
     private boolean inButton(int mx, int my, int x) {

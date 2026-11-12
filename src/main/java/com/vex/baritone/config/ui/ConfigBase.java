@@ -2,12 +2,10 @@ package com.vex.baritone.config.ui;
 
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.class_11909;
 import net.minecraft.class_2561;
 import net.minecraft.class_2960;
 import net.minecraft.class_332;
 import net.minecraft.class_437;
-
 /**
  * Shared shell for the Baritone config GUI.
  *
@@ -16,7 +14,7 @@ import net.minecraft.class_437;
  * to things that help you read the screen: the window fades in, the section
  * highlight glides, rows stagger in, and toggles settle smoothly.</p>
  */
-public abstract class ConfigBase extends class_437 {
+public abstract class ConfigBase extends RemasteredUiBase {
     public static final int PANEL_MAX_W = 600;
     public static final int PANEL_MAX_H = 400;
 
@@ -419,29 +417,28 @@ public abstract class ConfigBase extends class_437 {
     // ----------------------------------------------------------------- input
 
     @Override
-    public boolean method_25402(class_11909 click, boolean doubled) {
+    protected boolean handleMouse(double mouseX, double mouseY, int button) {
         ensureLayout();
-        int mouseX = (int) click.comp_4798();
-        int mouseY = (int) click.comp_4799();
-        int button = click.method_74245();
+        int x = (int) mouseX;
+        int y = (int) mouseY;
 
         if (button == 0) {
             for (NavItem item : this.navItems) {
-                if (item.isHovered(mouseX, mouseY)) {
+                if (item.isHovered(x, y)) {
                     item.activate();
                     return true;
                 }
             }
-            if (!this.notice && insideViewport(mouseX, mouseY)) {
+            if (!this.notice && insideViewport(x, y)) {
                 for (SettingRow row : this.rows) {
-                    if (row.isHovered(mouseX, mouseY)) {
+                    if (row.isHovered(x, y)) {
                         row.toggle();
                         return true;
                     }
                 }
             }
         }
-        return super.method_25402(click, doubled);
+        return true;
     }
 
     @Override

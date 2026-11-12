@@ -15,14 +15,14 @@ import java.util.stream.Stream;
  * #script delete <name> - delete a saved script
  * #script stop - stop the running script
  */
-public class ScriptCommand extends Command {
+public class ScriptCommand extends SafeCommand {
 
     public ScriptCommand(IBaritone baritone) {
         super(baritone, "script");
     }
 
     @Override
-    public void execute(String label, IArgConsumer args) {
+    protected void doExecute(String label, IArgConsumer args) throws Throwable {
         args.requireMax(2);
         if (!args.hasAny()) {
             getLongDesc().forEach(this::logDirect);
@@ -78,7 +78,7 @@ public class ScriptCommand extends Command {
     }
 
     @Override
-    public Stream<String> tabComplete(String label, IArgConsumer args) {
+    protected Stream<String> doTabComplete(String label, IArgConsumer args) throws Throwable {
         if (!args.hasAny()) {
             return Stream.of("create", "edit", "list", "run", "delete", "stop");
         }

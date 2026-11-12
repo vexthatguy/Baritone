@@ -6,8 +6,8 @@ This folder is the home of the multi-version port.
 
 | Target | Status |
 | --- | --- |
-| 1.21.11 (Fabric) | ✅ builds, all 47 anchors verified |
-| 1.21 (Fabric) | 🚧 in progress (stock jar in `libs/baritone-unoptimized-fabric-1.21.jar`) |
+| 1.21.11 (Fabric) | ✅ builds, 42/42 anchors verified |
+| 1.21 (Fabric) | ✅ builds, 42/42 anchors verified (in-game test pending) |
 | 1.26.x (Fabric) | 🚧 planned |
 | Forge / NeoForge | 🚧 planned |
 

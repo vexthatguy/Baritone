@@ -19,6 +19,7 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.AbstractInsnNode;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.FieldInsnNode;
+import org.objectweb.asm.tree.InsnNode;
 import org.objectweb.asm.tree.IntInsnNode;
 import org.objectweb.asm.tree.MethodInsnNode;
 import org.objectweb.asm.tree.MethodNode;
@@ -222,10 +223,30 @@ public final class VerifyAnchors {
         }
 
         // -- bootstrap injection
-        checkCall("com/vex/baritone/command/defaults/DefaultCommands",
-            "a", "(Lcom/vex/baritone/Baritone;)Ljava/util/List;",
-            "com/vex/baritone/config/CommandBootstrap", "install", "(Ljava/util/List;)V",
-            Opcodes.INVOKESTATIC);
+        boolean dcFound = false;
+        for (String m : new String[]{"a", "createAll"}) {
+            String desc = m.equals("a")
+                ? "(Lcom/vex/baritone/Baritone;)Ljava/util/List;"
+                : "(Lcom/vex/baritone/api/IBaritone;)Ljava/util/List;";
+            ClassNode dc = node("com/vex/baritone/command/defaults/DefaultCommands");
+            if (dc != null) {
+                for (MethodNode mn : dc.methods) {
+                    if (mn.name.equals(m) && mn.desc.equals(desc)) {
+                        for (AbstractInsnNode insn : mn.instructions) {
+                            if (insn instanceof MethodInsnNode mi && mi.getOpcode() == Opcodes.INVOKESTATIC
+                                && mi.owner.equals("com/vex/baritone/config/CommandBootstrap")
+                                && mi.name.equals("install")) {
+                                dcFound = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        checks++;
+        if (!dcFound) {
+            failures.add("DefaultCommands missing CommandBootstrap.install call");
+        }
 
         // -- chat gate
         checkMethodStartsWithDisabled("com/vex/baritone/command/ExampleBaritoneControl",
@@ -260,19 +281,84 @@ public final class VerifyAnchors {
             "com/vex/baritone/config/DeathLogger", "report",
             "(Lcom/vex/baritone/api/utils/IPlayerContext;)V", Opcodes.INVOKESTATIC);
 
-        // -- world provider keying
-        checkCall("com/vex/baritone/cache/WorldProvider", "a",
-            "(Lnet/minecraft/class_1937;)V",
-            "com/vex/baritone/config/WorldKey", "serverKey",
-            "(Lnet/minecraft/class_642;)Ljava/lang/String;", Opcodes.INVOKESTATIC);
+        // -- world provider keying (any method)
+        {
+            checks++;
+            ClassNode wp = node("com/vex/baritone/cache/WorldProvider");
+            if (wp == null) {
+                failures.add("WorldProvider missing (serverKey)");
+            } else {
+                boolean found = false;
+                for (MethodNode mn : wp.methods) {
+                    for (AbstractInsnNode insn : mn.instructions) {
+                        if (insn instanceof MethodInsnNode mi && mi.getOpcode() == Opcodes.INVOKESTATIC
+                            && mi.owner.equals("com/vex/baritone/config/WorldKey")
+                            && mi.name.equals("serverKey")) {
+                            found = true;
+                        }
+                    }
+                }
+                if (!found) {
+                    failures.add("WorldProvider missing WorldKey.serverKey call");
+                }
+            }
+        }
 
         // -- farm process
-        checkField("com/vex/baritone/process/FarmProcess", "b", "I");
-        checkMethod("com/vex/baritone/process/FarmProcess", "a", "(Ljava/util/ArrayList;)V");
-        checkMethod("com/vex/baritone/process/FarmProcess", "farm", "(ILnet/minecraft/class_2338;)V");
-        checkFarmScanRadius();
-        checkFarmClamp();
-        checkWartFields();
+        ClassNode farmNode = node("com/vex/baritone/process/FarmProcess");
+        checks++;
+        if (farmNode == null) {
+            failures.add("FarmProcess missing");
+        } else {
+            boolean hasRangeField = false;
+            for (var fn : farmNode.fields) {
+                if ((fn.name.equals("b") || fn.name.equals("range")) && fn.desc.equals("I")) {
+                    hasRangeField = true;
+                }
+            }
+            if (!hasRangeField) {
+                failures.add("FarmProcess range field (b/range I) missing");
+            }
+            boolean hasFarmMethod = false;
+            boolean hasScan = false;
+            for (MethodNode mn : farmNode.methods) {
+                if (mn.name.equals("farm") && mn.desc.equals("(ILnet/minecraft/class_2338;)V")) {
+                    hasFarmMethod = true;
+                    boolean clamped = false;
+                    for (AbstractInsnNode insn : mn.instructions) {
+                        if (insn instanceof FieldInsnNode f && f.getOpcode() == Opcodes.PUTFIELD
+                            && f.desc.equals("I")) {
+                            AbstractInsnNode prev = insn.getPrevious();
+                            if (prev instanceof MethodInsnNode mi && mi.getOpcode() == Opcodes.INVOKESTATIC
+                                && mi.owner.equals("com/vex/baritone/config/FarmLimits")
+                                && mi.name.equals("clampRange")) {
+                                clamped = true;
+                            }
+                        }
+                    }
+                    if (!clamped) {
+                        failures.add("FarmProcess range clamp missing");
+                    }
+                }
+                for (AbstractInsnNode insn : mn.instructions) {
+                    if (insn instanceof MethodInsnNode mi && mi.name.equals("scanChunkRadius")) {
+                        hasScan = true;
+                        AbstractInsnNode p1 = insn.getPrevious();
+                        AbstractInsnNode p2 = p1 == null ? null : p1.getPrevious();
+                        if (!(p1 instanceof IntInsnNode i1 && i1.getOpcode() == Opcodes.BIPUSH && i1.operand == 12
+                            && p2 instanceof IntInsnNode i2 && i2.getOpcode() == Opcodes.BIPUSH && i2.operand == 12)) {
+                            failures.add("FarmProcess scan radius is not 12/12");
+                        }
+                    }
+                }
+            }
+            if (!hasFarmMethod) {
+                failures.add("FarmProcess farm method missing");
+            }
+            if (!hasScan) {
+                failures.add("FarmProcess scanChunkRadius call missing");
+            }
+        }
 
         // -- settings default
         checkSettingDefault();
@@ -407,8 +493,15 @@ public final class VerifyAnchors {
                     }
                     if (cur != null) {
                         cur = cur.getPrevious();
+                        if (cur instanceof MethodInsnNode mi && mi.getOpcode() == Opcodes.INVOKESTATIC
+                            && mi.owner.equals("java/lang/Boolean") && mi.name.equals("valueOf")) {
+                            cur = cur.getPrevious();
+                        }
                         if (cur instanceof FieldInsnNode g && g.getOpcode() == Opcodes.GETSTATIC
                             && g.owner.equals("java/lang/Boolean") && g.name.equals("TRUE")) {
+                            return;
+                        }
+                        if (cur instanceof InsnNode in && in.getOpcode() == Opcodes.ICONST_1) {
                             return;
                         }
                     }

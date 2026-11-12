@@ -13,14 +13,14 @@ import java.util.stream.Stream;
 /**
  * #delhome [name] - deletes home waypoint(s).
  */
-public class DelHomeCommand extends Command {
+public class DelHomeCommand extends SafeCommand {
 
     public DelHomeCommand(IBaritone baritone) {
         super(baritone, "delhome");
     }
 
     @Override
-    public void execute(String label, IArgConsumer args) {
+    protected void doExecute(String label, IArgConsumer args) throws Throwable {
         args.requireMax(1);
         var collection = waypoints();
         if (args.hasAny()) {
@@ -55,7 +55,7 @@ public class DelHomeCommand extends Command {
     }
 
     @Override
-    public Stream<String> tabComplete(String label, IArgConsumer args) {
+    protected Stream<String> doTabComplete(String label, IArgConsumer args) throws Throwable {
         return waypoints().getByTag(IWaypoint.Tag.HOME).stream()
                 .map(IWaypoint::getName)
                 .distinct();

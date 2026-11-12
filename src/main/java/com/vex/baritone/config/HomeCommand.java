@@ -14,14 +14,14 @@ import java.util.stream.Stream;
 /**
  * #home [name] - paths to a specific named home waypoint.
  */
-public class HomeCommand extends Command {
+public class HomeCommand extends SafeCommand {
 
     public HomeCommand(IBaritone baritone) {
         super(baritone, "home");
     }
 
     @Override
-    public void execute(String label, IArgConsumer args) {
+    protected void doExecute(String label, IArgConsumer args) throws Throwable {
         args.requireMax(1);
         IWaypoint home;
         if (args.hasAny()) {
@@ -61,7 +61,7 @@ public class HomeCommand extends Command {
     }
 
     @Override
-    public Stream<String> tabComplete(String label, IArgConsumer args) {
+    protected Stream<String> doTabComplete(String label, IArgConsumer args) throws Throwable {
         return waypoints().getByTag(IWaypoint.Tag.HOME).stream()
                 .map(IWaypoint::getName)
                 .distinct();

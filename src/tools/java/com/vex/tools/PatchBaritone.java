@@ -250,7 +250,8 @@ public final class PatchBaritone {
 
         MethodNode target = null;
         for (MethodNode mn : cn.methods) {
-            if (mn.name.equals("a") && mn.desc.equals("(Lcom/vex/baritone/Baritone;)Ljava/util/List;")) {
+            if ((mn.name.equals("a") || mn.name.equals("createAll"))
+                && mn.desc.endsWith(")Ljava/util/List;")) {
                 target = mn;
                 break;
             }
@@ -329,9 +330,17 @@ public final class PatchBaritone {
                     }
                     if (cur != null) {
                         cur = cur.getPrevious();
+                        if (cur instanceof MethodInsnNode mi && mi.getOpcode() == Opcodes.INVOKESTATIC
+                            && mi.owner.equals("java/lang/Boolean") && mi.name.equals("valueOf")) {
+                            cur = cur.getPrevious();
+                        }
                         if (cur instanceof FieldInsnNode g && g.getOpcode() == Opcodes.GETSTATIC
                             && g.owner.equals("java/lang/Boolean") && g.name.equals("FALSE")) {
                             g.name = "TRUE";
+                            changed = true;
+                        } else if (cur instanceof InsnNode in && in.getOpcode() == Opcodes.ICONST_0) {
+                            // older builds: iconst_0; Boolean.valueOf(false)
+                            mn.instructions.set(cur, new InsnNode(Opcodes.ICONST_1));
                             changed = true;
                         }
                     }
@@ -564,19 +573,17 @@ public final class PatchBaritone {
         // --- Farm scan radius: hard cap at 12 chunks (BIPUSH 10 -> 12) --------
         boolean radiusChanged = false;
         for (MethodNode mn : cn.methods) {
-            if (mn.name.equals("a") && mn.desc.equals("(Ljava/util/ArrayList;)V")) {
-                for (AbstractInsnNode insn : mn.instructions) {
-                    if (insn instanceof MethodInsnNode m && m.name.equals("scanChunkRadius")) {
-                        AbstractInsnNode p1 = insn.getPrevious();
-                        AbstractInsnNode p2 = p1 == null ? null : p1.getPrevious();
-                        if (p1 instanceof IntInsnNode i1 && i1.getOpcode() == Opcodes.BIPUSH && i1.operand == 10
-                            && p2 instanceof IntInsnNode i2 && i2.getOpcode() == Opcodes.BIPUSH && i2.operand == 10) {
-                            i1.operand = 12;
-                            i2.operand = 12;
-                            radiusChanged = true;
-                        }
-                        break;
+            for (AbstractInsnNode insn : mn.instructions) {
+                if (insn instanceof MethodInsnNode m && m.name.equals("scanChunkRadius")) {
+                    AbstractInsnNode p1 = insn.getPrevious();
+                    AbstractInsnNode p2 = p1 == null ? null : p1.getPrevious();
+                    if (p1 instanceof IntInsnNode i1 && i1.getOpcode() == Opcodes.BIPUSH && i1.operand == 10
+                        && p2 instanceof IntInsnNode i2 && i2.getOpcode() == Opcodes.BIPUSH && i2.operand == 10) {
+                        i1.operand = 12;
+                        i2.operand = 12;
+                        radiusChanged = true;
                     }
+                    break;
                 }
             }
         }
@@ -587,10 +594,11 @@ public final class PatchBaritone {
             if (mn.name.equals("farm") && mn.desc.equals("(ILnet/minecraft/class_2338;)V")) {
                 for (AbstractInsnNode insn : mn.instructions) {
                     if (insn instanceof FieldInsnNode f && f.getOpcode() == Opcodes.PUTFIELD
-                        && f.owner.equals("com/vex/baritone/process/FarmProcess") && f.name.equals("b") && f.desc.equals("I")) {
+                        && f.desc.equals("I")) {
                         mn.instructions.insertBefore(insn, new MethodInsnNode(Opcodes.INVOKESTATIC,
                             "com/vex/baritone/config/FarmLimits", "clampRange", "(I)I", false));
                         rangeClamped = true;
+                        break;
                     }
                 }
             }

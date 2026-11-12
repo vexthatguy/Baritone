@@ -18,7 +18,7 @@ import net.minecraft.class_2338;
  * #biome [name] - reports the current biome or paths to the nearest biome.
  * #biome list [filter] - lists biomes.
  */
-public class BiomeCommand extends Command {
+public class BiomeCommand extends SafeCommand {
 
     private static final int SEARCH_RADIUS = 128;
 
@@ -27,7 +27,7 @@ public class BiomeCommand extends Command {
     }
 
     @Override
-    public void execute(String label, IArgConsumer args) {
+    protected void doExecute(String label, IArgConsumer args) throws Throwable {
         args.requireMax(2);
         if (!args.hasAny()) {
             reportCurrent();
@@ -62,7 +62,7 @@ public class BiomeCommand extends Command {
         logDirect("You are in biome " + name);
     }
 
-    private void listBiomes(IArgConsumer args) {
+    private void listBiomes(IArgConsumer args) throws Throwable {
         args.requireMax(1);
         String filter = args.hasAny() ? args.getString().toLowerCase() : "";
         var reg = biomeRegistry();
@@ -141,7 +141,7 @@ public class BiomeCommand extends Command {
     }
 
     @Override
-    public Stream<String> tabComplete(String label, IArgConsumer args) {
+    protected Stream<String> doTabComplete(String label, IArgConsumer args) throws Throwable {
         if (!args.hasAny()) {
             return Stream.of("list");
         }

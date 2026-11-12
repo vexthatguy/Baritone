@@ -14,14 +14,14 @@ import java.util.stream.Stream;
 /**
  * #sethome [name] - sets a named home waypoint at your feet.
  */
-public class SetHomeCommand extends Command {
+public class SetHomeCommand extends SafeCommand {
 
     public SetHomeCommand(IBaritone baritone) {
         super(baritone, "sethome", "addhome");
     }
 
     @Override
-    public void execute(String label, IArgConsumer args) {
+    protected void doExecute(String label, IArgConsumer args) throws Throwable {
         args.requireMax(1);
         String name = args.hasAny() ? args.getString() : "home";
         var collection = waypoints();
@@ -44,7 +44,7 @@ public class SetHomeCommand extends Command {
     }
 
     @Override
-    public Stream<String> tabComplete(String label, IArgConsumer args) {
+    protected Stream<String> doTabComplete(String label, IArgConsumer args) throws Throwable {
         return Stream.empty();
     }
 

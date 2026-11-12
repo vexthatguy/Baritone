@@ -14,14 +14,14 @@ import java.util.stream.Stream;
 /**
  * #homes [filter] - lists home waypoints for the current world/server.
  */
-public class HomesCommand extends Command {
+public class HomesCommand extends SafeCommand {
 
     public HomesCommand(IBaritone baritone) {
         super(baritone, "homes");
     }
 
     @Override
-    public void execute(String label, IArgConsumer args) {
+    protected void doExecute(String label, IArgConsumer args) throws Throwable {
         args.requireMax(1);
         var collection = waypoints();
         List<IWaypoint> homes = new ArrayList<>(collection.getByTag(IWaypoint.Tag.HOME));
@@ -52,7 +52,7 @@ public class HomesCommand extends Command {
     }
 
     @Override
-    public Stream<String> tabComplete(String label, IArgConsumer args) {
+    protected Stream<String> doTabComplete(String label, IArgConsumer args) throws Throwable {
         return waypoints().getByTag(IWaypoint.Tag.HOME).stream()
                 .map(IWaypoint::getName)
                 .distinct();
