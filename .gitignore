@@ -1,0 +1,38 @@
+# Gradle / build
+build/
+.gradle/
+*.jar.backup
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Minecraft runs / temp
+run/
+crash-reports/
+logs/
+screenshots/
+
+# Stray extracted artifacts
+META-INF/
+structure.txt
+earthbuild.bat
+earthversion.bat
+
+# Leftover scratch trees
+baritone/
+altoclef/
+
+# Generated libs (not inputs)
+libs/baritone-1.21.11-SNAPSHOT.jar
+libs/baritone-patched.jar
+libs/*-unoptimized-*.jar
+libs/jvmdowngrader-*.jar
+libs/mixinextras-*.jar
+libs/yacl-*.jar
+
+# Top-level sample metadata
+fabric.mod.json
+mixins.baritone-meteor.json
+mixins.baritone-meteor-refmap.json

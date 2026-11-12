@@ -1,0 +1,15 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "com.vex.baritone.config.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "CreditsScreenMixin",
+    "ScreenRenderMixin",
+    "ModsScreenMixin",
+    "ModListFilterMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}
