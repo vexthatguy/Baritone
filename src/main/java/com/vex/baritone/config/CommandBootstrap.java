@@ -26,6 +26,7 @@ public final class CommandBootstrap {
             }
         }
         if (baritone == null) {
+            System.out.println("[Baritone] CommandBootstrap: no baritone found in command list, skipping custom commands");
             return;
         }
         commands.add(new HomeCommand(baritone));
@@ -34,6 +35,7 @@ public final class CommandBootstrap {
         commands.add(new HomesCommand(baritone));
         commands.add(new BiomeCommand(baritone));
         commands.add(new ScriptCommand(baritone));
+        System.out.println("[Baritone] CommandBootstrap: installed home/sethome/delhome/homes/biome/script");
     }
 
     private static IBaritone baritoneOf(ICommand command) {
