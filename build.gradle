@@ -61,22 +61,30 @@ sourceSets {
         compileClasspath += configurations.remapper
     }
     ui {
-        java.srcDir 'src/main/java'
-        def profileOf = [
-            '1.21.2': '1.21.4',
-            '1.21.3': '1.21.4',
-            '1.21.5': '1.21.4',
-            '1.21.7': '1.21.6',
-            '1.21.8': '1.21.6'
-        ]
-        def versionOverlay = file("src/version/$mcVersion/java")
-        def classicOverlay = file("src/version/1.21/java")
-        if (versionOverlay.exists()) {
-            java.srcDir versionOverlay
-        } else if (profileOf.containsKey(mcVersion)) {
-            java.srcDir file("src/version/${profileOf[mcVersion]}/java")
-        } else if (classicOverlay.exists()) {
-            java.srcDir classicOverlay
+        String namedEnv = System.getenv('UI_NAMED_DIR')
+        def namedSrc = namedEnv != null && !namedEnv.isBlank()
+            ? namedEnv
+            : providers.gradleProperty('ui_named_dir').orElse('').get()
+        if (namedSrc != '') {
+            java.srcDir file(namedSrc)
+        } else {
+            java.srcDir 'src/main/java'
+            def profileOf = [
+                '1.21.2': '1.21.4',
+                '1.21.3': '1.21.4',
+                '1.21.5': '1.21.4',
+                '1.21.7': '1.21.6',
+                '1.21.8': '1.21.6'
+            ]
+            def versionOverlay = file("src/version/$mcVersion/java")
+            def classicOverlay = file("src/version/1.21/java")
+            if (versionOverlay.exists()) {
+                java.srcDir versionOverlay
+            } else if (profileOf.containsKey(mcVersion)) {
+                java.srcDir file("src/version/${profileOf[mcVersion]}/java")
+            } else if (classicOverlay.exists()) {
+                java.srcDir classicOverlay
+            }
         }
         java.include 'com/vex/baritone/**'
         compileClasspath += files(mcIntermediaryJar)

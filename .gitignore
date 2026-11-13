@@ -15,6 +15,9 @@ crash-reports/
 logs/
 screenshots/
 
+# Generated named-source port scaffolds
+src/named/
+
 # Stray extracted artifacts
 /META-INF/
 structure.txt
