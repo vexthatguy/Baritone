@@ -1,0 +1,734 @@
+[
+    {
+        "mc":  "1.21",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21-SNAPSHOT.109.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21-SNAPSHOT.122.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21-SNAPSHOT.103.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21-SNAPSHOT.108.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21-SNAPSHOT.104.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21-SNAPSHOT.106.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21-SNAPSHOT.107.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21-SNAPSHOT.128.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21",
+        "loader":  "forge",
+        "artifact":  "ports\\cache\\1.21\\baritone-remastered-forge-1.21.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21",
+        "loader":  "neoforge",
+        "artifact":  "ports\\cache\\1.21\\baritone-remastered-neoforge-1.21.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.1",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.1-SNAPSHOT.129.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.1",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.1-SNAPSHOT.113.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.1",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.1-SNAPSHOT.123.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.1",
+        "loader":  "forge",
+        "artifact":  "ports\\cache\\1.21.1\\baritone-remastered-forge-1.21.1.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.1",
+        "loader":  "neoforge",
+        "artifact":  "ports\\cache\\1.21.1\\baritone-remastered-neoforge-1.21.1.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.10",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.10-SNAPSHOT.121.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.10",
+        "loader":  "forge",
+        "artifact":  "ports\\cache\\1.21.10\\baritone-remastered-forge-1.21.10.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.10",
+        "loader":  "neoforge",
+        "artifact":  "ports\\cache\\1.21.10\\baritone-remastered-neoforge-1.21.10.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.83.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.82.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.81.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.86.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.85.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.84.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.80.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.76.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.75.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.74.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.79.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.78.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.77.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.96.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.95.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.94.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.99.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.98.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.97.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.93.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.89.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.88.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.87.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.92.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.91.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.90.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.45.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.46.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.100.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.102.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.101.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.50.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.51.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.49.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.47.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.48.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.44.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.37.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.38.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.111.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.105.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.110.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.42.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.43.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.41.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.39.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.40.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.52.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.63.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.64.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.65.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.62.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.60.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.61.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.73.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.70.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.71.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.72.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.69.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.66.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.67.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.68.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.58.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.59.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.54.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.53.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.55.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.56.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.11",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.11-SNAPSHOT.57.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.2",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.2-SNAPSHOT.115.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.2",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.2-SNAPSHOT.124.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.2",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.2-SNAPSHOT.130.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.2",
+        "loader":  "forge",
+        "artifact":  "ports\\cache\\1.21.2\\baritone-remastered-forge-1.21.2.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.2",
+        "loader":  "neoforge",
+        "artifact":  "ports\\cache\\1.21.2\\baritone-remastered-neoforge-1.21.2.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.3",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.3-SNAPSHOT.125.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.3",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.3-SNAPSHOT.131.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.3",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.3-SNAPSHOT.116.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.3",
+        "loader":  "forge",
+        "artifact":  "ports\\cache\\1.21.3\\baritone-remastered-forge-1.21.3.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.3",
+        "loader":  "neoforge",
+        "artifact":  "ports\\cache\\1.21.3\\baritone-remastered-neoforge-1.21.3.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.4",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.4-SNAPSHOT.112.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.4",
+        "loader":  "forge",
+        "artifact":  "ports\\cache\\1.21.4\\baritone-remastered-forge-1.21.4.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.4",
+        "loader":  "neoforge",
+        "artifact":  "ports\\cache\\1.21.4\\baritone-remastered-neoforge-1.21.4.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.5",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.5-SNAPSHOT.132.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.5",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.5-SNAPSHOT.117.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.5",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.5-SNAPSHOT.126.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.5",
+        "loader":  "forge",
+        "artifact":  "ports\\cache\\1.21.5\\baritone-remastered-forge-1.21.5.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.5",
+        "loader":  "neoforge",
+        "artifact":  "ports\\cache\\1.21.5\\baritone-remastered-neoforge-1.21.5.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.6",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.6-SNAPSHOT.127.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.6",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.6-SNAPSHOT.133.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.6",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.6-SNAPSHOT.114.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.6",
+        "loader":  "forge",
+        "artifact":  "ports\\cache\\1.21.6\\baritone-remastered-forge-1.21.6.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.6",
+        "loader":  "neoforge",
+        "artifact":  "ports\\cache\\1.21.6\\baritone-remastered-neoforge-1.21.6.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.7",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.7-SNAPSHOT.118.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.7",
+        "loader":  "forge",
+        "artifact":  "ports\\cache\\1.21.7\\baritone-remastered-forge-1.21.7.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.7",
+        "loader":  "neoforge",
+        "artifact":  "ports\\cache\\1.21.7\\baritone-remastered-neoforge-1.21.7.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.8",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.8-SNAPSHOT.119.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.8",
+        "loader":  "forge",
+        "artifact":  "ports\\cache\\1.21.8\\baritone-remastered-forge-1.21.8.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.8",
+        "loader":  "neoforge",
+        "artifact":  "ports\\cache\\1.21.8\\baritone-remastered-neoforge-1.21.8.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.9",
+        "loader":  "fabric",
+        "artifact":  "build\\libs\\baritone-1.21.9-SNAPSHOT.120.jar",
+        "status":  "verified-42-42"
+    },
+    {
+        "mc":  "1.21.9",
+        "loader":  "forge",
+        "artifact":  "ports\\cache\\1.21.9\\baritone-remastered-forge-1.21.9.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "1.21.9",
+        "loader":  "neoforge",
+        "artifact":  "ports\\cache\\1.21.9\\baritone-remastered-neoforge-1.21.9.jar",
+        "status":  "assembled"
+    },
+    {
+        "mc":  "26.3",
+        "loader":  "fabric",
+        "artifact":  "ports\\cache\\26.3\\baritone-remastered-EXPERIMENTAL-fabric-26.3.jar",
+        "status":  "experimental"
+    },
+    {
+        "mc":  "26.3",
+        "loader":  "forge",
+        "artifact":  "ports\\cache\\26.3\\baritone-remastered-EXPERIMENTAL-forge-26.3.jar",
+        "status":  "experimental"
+    },
+    {
+        "mc":  "26.3",
+        "loader":  "neoforge",
+        "artifact":  "ports\\cache\\26.3\\baritone-remastered-EXPERIMENTAL-neoforge-26.3.jar",
+        "status":  "experimental"
+    }
+]
