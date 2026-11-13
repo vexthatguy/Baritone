@@ -17,3 +17,14 @@
 - width via StringVisitable not found; likely width(Component)
 ## RegistryAccess
 - not a real type; suggest net.minecraft.core.Holder (verify)
+
+## GuiGraphicsExtractor API (26.3) - rewrite target for RenderKit/DrawSupport
+- fill(x1,y1,x2,y2,color) | fillGradient(x1,y1,x2,y2,c1,c2)
+- horizontalLine(x1,x2,y,color) | verticalLine(x,y1,y2,color) | outline(x,y,w,h,color)
+- enableScissor(x,y,w,h) / disableScissor()
+- text(Font, String|Component|FormattedCharSequence, x, y, color [, shadow])
+- centeredText(Font, text, x, y, color)
+- blit(Identifier, x, y, w, h, u0, v0, u1, v1)  [no-pipeline convenience overload]
+- pose() -> Matrix3x2fStack (push/pop/scale available)
+- Screen render hook: extractRenderState(GuiGraphicsExtractor, int, int, float)
+
