@@ -47,7 +47,8 @@ $renames = @(
     @('net.minecraft.client.network.ClientPlayNetworkHandler', 'net.minecraft.client.multiplayer.ClientPacketListener'),
     @('net.minecraft.client.network.ClientPlayerEntity', 'net.minecraft.client.player.LocalPlayer'),
     @('net.minecraft.world.World', 'net.minecraft.world.level.Level'),
-    @('net.minecraft.client.util.Window', 'com.mojang.blaze3d.platform.Window')
+    @('net.minecraft.client.util.Window', 'com.mojang.blaze3d.platform.Window'),
+    @('net.minecraft.client.gui.DrawContext', 'net.minecraft.client.gui.GuiGraphicsExtractor')
 )
 
 Get-ChildItem $dst -Recurse -Filter "*.java" | ForEach-Object {
@@ -80,6 +81,17 @@ $hand = "src/named-port/$Version/java"
 if (Test-Path $hand) {
     Copy-Item "$hand\com\vex\baritone\*" $dst -Recurse -Force
     Write-Host "overlaid hand-authored overrides from $hand"
+}
+
+# 26.3 screen-plumbing renames (post-overlay)
+Get-ChildItem $dst -Recurse -Filter "*.java" | ForEach-Object {
+    $c = Get-Content $_.FullName -Raw
+    $c = $c.Replace('public void method_25394(net.minecraft.client.gui.GuiGraphicsExtractor', 'public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor')
+    $c = $c.Replace('super.method_25394(', 'super.extractRenderState(')
+    $c = $c.Replace('method_25419()', 'onClose()')
+    $c = $c.Replace('.method_60655(', '.of(')
+    $c = $c.Replace('method_43470(', 'literal(')
+    Set-Content $_.FullName $c -NoNewline
 }
 
 Write-Host "named source scaffold ready at $OutDir"
