@@ -97,3 +97,21 @@ LinkCheck checked 56 classes; missing references: 70
 Caused by: java.lang.ClassNotFoundException: ports\cache\26.3\missing.txt
 ```
 
+
+## Confirmed 26.3 API facts (probed from the 26.3 merged jar)
+
+- Text -> net.minecraft.network.chat.Component
+- MutableText -> net.minecraft.network.chat.MutableComponent
+- MinecraftClient -> net.minecraft.client.Minecraft
+- TextRenderer -> net.minecraft.client.gui.Font (public field Minecraft.font)
+- Window -> com.mojang.blaze3d.platform.Window
+- ButtonWidget -> net.minecraft.client.gui.components.Button
+- TextFieldWidget -> net.minecraft.client.gui.components.EditBox
+- Element -> net.minecraft.client.gui.components.events.GuiEventListener
+- ClientPlayNetworkHandler -> net.minecraft.client.multiplayer.ClientPacketListener
+- ClientPlayerEntity -> net.minecraft.client.player.LocalPlayer
+- World -> net.minecraft.world.level.Level
+- Screen -> net.minecraft.client.gui.screens.Screen
+- DrawContext -> DOES NOT EXIST. 26.3 uses render-state extraction instead:
+  Screen.extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float)
+  => the whole drawing layer (RenderKit) must be rewritten against this paradigm.
