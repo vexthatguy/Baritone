@@ -1,72 +1,80 @@
 # Baritone Remastered
 
-A maintained fork of Baritone for Minecraft **1.21.11** (Fabric), with a flat
-Xaero-style config GUI, a master kill-switch, and a set of quality-of-life
-fixes and additions.
+A polished continuation of Baritone — the classic Minecraft pathfinding mod —
+with a modern config GUI, a hard kill-switch, and fixes for the rough edges
+that annoyed everyone. Built for Minecraft 1.21.x (Fabric, Forge, NeoForge)
+with experimental 26.3 builds.
 
 ![icon](assets/baritone/icon.png)
 
-## Features
+## Highlights
 
-- **Master toggle** — "Baritone: ON/OFF" in Credits & Attribution. OFF
-  disables all pathing, input, processes, goals, selections, the `#` command
-  prefix, and removes the mod from the ModMenu list (restored on enable).
-- **Config GUI** — flat dark panel, 1px borders, blue section headers,
-  compact rows, small toggles, left tabs, logo in the header, animations.
-- **Named homes** — `#sethome <name>`, `#home <name>`, `#homes`,
-  `#delhome [name]`.
-- **Death waypoints** — auto-saved on death (stock behavior) with death
-  coordinates printed to chat.
-- **Per-world/per-server waypoints** — waypoint folders are keyed by world
-  or server address.
-- **`#biome`** — report current biome, path to the nearest matching biome,
-  `#biome list [filter]`.
-- **Farm fixes** — scan radius hard-capped at 12 chunks, `#farm <range>`
-  clamped to 192 blocks, nether-wart replanting enabled by default.
-- **`#version`** — prints the real mod version (read from `fabric.mod.json`).
-- **Scripts** — `#script create <name>` opens an editor GUI; run with
-  `#script run <name>`; also `#script list|delete|stop`.
-- **`#help`** — alphabetical listing, paginated.
-- ModMenu entry, metadata (author `vexthatguy`, Modrinth homepage/sources).
+- **Master toggle** — "Baritone: ON/OFF" lives in Credits & Attribution.
+  Switching it off kills every bot feature *and* the `#` command prefix, and
+  even hides the mod from ModMenu. One click, fully gone.
+- **Config GUI** — flat, dark, Xaero-inspired. Navigation tabs, compact
+  toggles, smooth animations, crisp text. Everything you'd tweak is a click
+  away.
+- **Named homes** — `#sethome base`, `#home base`. No more guessing.
+- **Death waypoints** — auto-saved, with your death coordinates posted to
+  chat.
+- **Per-world/per-server waypoints** — homes never leak between worlds.
+- **`#biome`** — report your biome or path to the nearest matching one.
+- **Farming that actually works** — capped at a sane 12-chunk radius,
+  `#farm` range clamped, nether wart replanting on by default.
+- **Scripts** — `#script create <name>` opens an editor, `#script run <name>`
+  executes your command list one per tick.
+- **`#version`** prints the real build, and `#help` is sorted and paginated.
 
 ## Commands
 
-| Command | What it does |
-| --- | --- |
-| `#goto <x y z>` | path to coordinates |
-| `#follow player [name]` | follow a player |
-| `#home [name]` | path to home |
-| `#sethome [name]` | set home at feet |
-| `#homes [filter]` | list homes |
-| `#delhome [name]` | delete home(s) |
-| `#biome [name]` | report/path to biome |
-| `#biome list [filter]` | list biomes |
-| `#farm [range]` | farm crops (≤192 blocks) |
-| `#script create <name>` | open script editor |
-| `#script run <name>` | run a script |
-| `#version` | print version |
-| `#help [command]` | help / pages |
-
-## Building
-
-Requires a JDK (built with JDK 25) and network access to the Gradle plugin
-portal.
-
 ```
-gradlew.bat build -x test
+#goto <x> <y> <z>      path to coordinates
+#follow player [name]   follow a player
+#home [name]            path to a named home
+#sethome [name]         set a home at your feet
+#homes [filter]         list homes
+#delhome [name]         delete home(s)
+#biome [name]           report / path to biome
+#biome list [filter]    list biome ids
+#farm [range]           farm crops (≤192 blocks)
+#script create <name>    open script editor
+#script run <name>       run a script
+#version                print version
+#help [command]         help, paginated
 ```
-
-Output: `build/libs/baritone-1.21.11-SNAPSHOT.<n>.jar`
-
-The build chain: `renameJar` (package rename `baritone` → `com.vex.baritone`)
-→ `compileUi` (config GUI/commands) → `patchBaritone` (ASM patches) →
-`stampJar` (version + manifest + injected classes + modmenu entrypoint).
 
 ## Install
 
-Drop the jar into your instance's `mods/` folder (Fabric, MC 1.21.11).
-Remove other Baritone jars first.
+Drop the matching jar into your instance's `mods/` folder. Make sure the jar
+matches your Minecraft version and loader (Fabric / Forge / NeoForge), and
+remove any older Baritone jars first.
 
-## Version support / roadmap
+## Building
 
-See [ROADMAP.md](ROADMAP.md).
+Requires JDK 25.
+
+```
+gradlew build -x test
+```
+
+The build is parameterized per MC version — see `ports/README.md` for the
+full matrix and per-version commands. `verifyAnchors` runs automatically as
+part of the build chain and fails with a report if any anchor drifts.
+
+## Versions
+
+| Minecraft | Fabric | Forge | NeoForge |
+|---|---|---|---|
+| 1.21 → 1.21.10 | ✅ | ✅ | ✅ |
+| 1.21.11 | ✅ | — | — |
+| 26.3 | ⚠️ experimental | ⚠️ experimental | ⚠️ experimental |
+
+All 1.21.x builds pass the full anchor suite. The 26.3 line is early-access:
+the build is produced but the GUI layer is still being ported to the new
+26.3 rendering API and hasn't been play-tested yet.
+
+## Acknowledgements
+
+Built on the shoulders of the Baritone project (LGPLv3) and its community.
+This fork aims to keep that legacy alive on modern Minecraft.

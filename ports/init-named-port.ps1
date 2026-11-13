@@ -91,7 +91,15 @@ Get-ChildItem $dst -Recurse -Filter "*.java" | ForEach-Object {
     $c = $c.Replace('method_25419()', 'onClose()')
     $c = $c.Replace('.method_60655(', '.of(')
     $c = $c.Replace('method_43470(', 'literal(')
+    $c = $c.Replace('.of("baritone", "textures/icon.png")', '.fromNamespaceAndPath("baritone", "textures/icon.png")')
+    $c = $c.Replace('.field_1697.toPath()', '.gameDirectory.toPath()')
+    $c = $c.Replace('public boolean method_25401(', 'public boolean mouseScrolled(')
+    $c = $c.Replace('super.method_25401(', 'super.mouseScrolled(')
     Set-Content $_.FullName $c -NoNewline
 }
+
+# modmenu integration is loader-specific and cannot link against 26.3 UI; drop it
+Remove-Item (Join-Path $dst "ModMenuIntegration.java") -Force -ErrorAction SilentlyContinue
+Remove-Item (Join-Path $dst "ModMenuVisibility.java") -Force -ErrorAction SilentlyContinue
 
 Write-Host "named source scaffold ready at $OutDir"
