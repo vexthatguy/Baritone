@@ -137,7 +137,19 @@ public final class PatchBaritone {
         if (System.getProperty("BT_NO_FRAMES") != null) {
             return new ClassWriter(ClassWriter.COMPUTE_MAXS);
         }
-        return cw();
+        return new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+    }
+
+    private static byte[] emit(ClassNode cn) {
+        try {
+            ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+            cn.accept(cw);
+            return cw.toByteArray();
+        } catch (StackOverflowError | RuntimeException e) {
+            ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS);
+            cn.accept(cw);
+            return cw.toByteArray();
+        }
     }
 
     private static byte[] patchCommandGate(byte[] classBytes) {
@@ -174,9 +186,7 @@ public final class PatchBaritone {
         if (!any) {
             return null;
         }
-        ClassWriter cw = cw();
-        cn.accept(cw);
-        return cw.toByteArray();
+        return emit(cn);
     }
 
     private static byte[] patchProviderGate(byte[] classBytes) {
@@ -212,9 +222,7 @@ public final class PatchBaritone {
 
         cn.methods.add(gate);
 
-        ClassWriter cw = cw();
-        cn.accept(cw);
-        return cw.toByteArray();
+        return emit(cn);
     }
 
     private static byte[] patchChatGate(byte[] classBytes) {
@@ -246,9 +254,7 @@ public final class PatchBaritone {
         if (!any) {
             return null;
         }
-        ClassWriter cw = cw();
-        cn.accept(cw);
-        return cw.toByteArray();
+        return emit(cn);
     }
 
     private static byte[] patchDefaultCommands(byte[] classBytes) {
@@ -286,9 +292,7 @@ public final class PatchBaritone {
             "(Ljava/util/List;)V", false));
         target.instructions.insertBefore(unmod, inject);
 
-        ClassWriter cw = cw();
-        cn.accept(cw);
-        return cw.toByteArray();
+        return emit(cn);
     }
 
     private static byte[] patchWorldProvider(byte[] classBytes) {
@@ -310,9 +314,7 @@ public final class PatchBaritone {
         if (!any) {
             return null;
         }
-        ClassWriter cw = cw();
-        cn.accept(cw);
-        return cw.toByteArray();
+        return emit(cn);
     }
 
     private static byte[] patchSettingsDefault(byte[] classBytes) {
@@ -359,9 +361,7 @@ public final class PatchBaritone {
             return null;
         }
         System.out.println("Settings patch: replantNetherWart default flipped to TRUE");
-        ClassWriter cw = cw();
-        cn.accept(cw);
-        return cw.toByteArray();
+        return emit(cn);
     }
 
     private static byte[] patchVersionCommand(byte[] classBytes) {
@@ -389,9 +389,7 @@ public final class PatchBaritone {
         target.instructions.clear();
         target.instructions.add(body);
 
-        ClassWriter cw = cw();
-        cn.accept(cw);
-        return cw.toByteArray();
+        return emit(cn);
     }
 
     private static byte[] patchHelpSort(byte[] classBytes) {
@@ -428,9 +426,7 @@ public final class PatchBaritone {
             "com/vex/baritone/config/HelpSorter", "sort", "(Ljava/util/List;)V", false));
         target.instructions.insert(collect, sort);
 
-        ClassWriter cw = cw();
-        cn.accept(cw);
-        return cw.toByteArray();
+        return emit(cn);
     }
 
     private static byte[] patchDeathWaypoint(byte[] classBytes) {
@@ -458,9 +454,7 @@ public final class PatchBaritone {
             "(Lcom/vex/baritone/api/utils/IPlayerContext;)V", false));
         target.instructions.insert(gate);
 
-        ClassWriter cw = cw();
-        cn.accept(cw);
-        return cw.toByteArray();
+        return emit(cn);
     }
 
     private static byte[] patchThisWay(byte[] classBytes) {
@@ -614,9 +608,7 @@ public final class PatchBaritone {
         System.out.println("FarmProcess: crops=" + true + " wart=" + wartSwapped
             + " radius12=" + radiusChanged + " rangeClamp=" + rangeClamped);
 
-        ClassWriter cw = cw();
-        cn.accept(cw);
-        return cw.toByteArray();
+        return emit(cn);
     }
 
     private static byte[] readFully(InputStream in) throws IOException {
